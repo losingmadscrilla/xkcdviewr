@@ -48,7 +48,16 @@ public class MainActivity extends Activity {
     private MediaPlayer player;
     private boolean shouldPlaySound = true;
 
-//    Oh baby
+//    Pentatonicity!
+    private final double toneA = 440.;
+    private final double toneB = 495.;
+    private final double toneCSharp = 556.875;
+    private final double toneE = 660.;
+    private final double toneFSharp = 742.5;
+    private final double toneAyy = 880.;
+    private final int duration = 44100 * 3;
+
+    //    Oh baby
     private static final String SOUND_CALLBACKS_KEY = "soundCallbacks";
     private ImageView audioButtonView;
     private ImageView audioButtonViewMuted;
@@ -167,11 +176,10 @@ public class MainActivity extends Activity {
 
     public void randomComic(View v) {
         NetworkInfo networkInfo = getNetworkInfo();
-
         if (networkInfo != null && networkInfo.isConnected()) {
             // fetch data
             if (shouldPlaySound) {
-                playSound(220, 44100);
+                playSound(toneA, duration);
             }
             counter = randomInteger(1, maximumComicNumber);
             URLtoRequestDataFrom = "https://xkcd.com/" + counter + "/info.0.json";
@@ -190,15 +198,33 @@ public class MainActivity extends Activity {
         return connMgr.getActiveNetworkInfo();
     }
 
-    public void leftPressed(View v) {
-        NetworkInfo networkInfo = getNetworkInfo();
 
+    public void doubleLeftPressed(View v) {
+
+        if (shouldPlaySound) {
+            playSound(toneB, duration);
+        }
+
+        NetworkInfo networkInfo = getNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            counter = 1;
+            URLtoRequestDataFrom = "https://xkcd.com/" + counter + "/info.0.json";
+            getData();
+        } else {
+            networkToast();
+        }
+    }
+
+    public void leftPressed(View v) {
+
+        if (shouldPlaySound) {
+            playSound(toneCSharp, duration);
+        }
+
+        NetworkInfo networkInfo = getNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             if(counter >= 2 && counter <= maximumComicNumber) {
                 counter--;
-                if (shouldPlaySound) {
-                    playSound(440, 44100);
-                }
                 URLtoRequestDataFrom = "https://xkcd.com/" + counter + "/info.0.json";
                 getData();
             } else {
@@ -210,14 +236,15 @@ public class MainActivity extends Activity {
     }
 
     public void rightPressed(View v) {
-        NetworkInfo networkInfo = getNetworkInfo();
 
+        if (shouldPlaySound) {
+            playSound(toneE, duration);
+        }
+
+        NetworkInfo networkInfo = getNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             if(counter >= 1 && counter <= maximumComicNumber - 1) {
                 counter++;
-                if (shouldPlaySound) {
-                    playSound(660, 44100);
-                }
                 URLtoRequestDataFrom = "https://xkcd.com/" + counter + "/info.0.json";
                 getData();
             } else {
@@ -227,6 +254,23 @@ public class MainActivity extends Activity {
             networkToast();
         }
     }
+
+    public void doubleRightPressed(View v) {
+
+        if (shouldPlaySound) {
+            playSound(toneFSharp, duration);
+        }
+
+        NetworkInfo networkInfo = getNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            counter = maximumComicNumber;
+            URLtoRequestDataFrom = "https://xkcd.com/" + counter + "/info.0.json";
+            getData();
+        } else {
+            networkToast();
+        }
+    }
+
 
     public void savePressed(View v) {
         if (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -277,8 +321,12 @@ public class MainActivity extends Activity {
     }
 
     public void getSpecificComic(View v) {
-        int comicToGet;
 
+        if (shouldPlaySound) {
+            playSound(toneAyy, duration);
+        }
+
+        int comicToGet;
         try {
             comicToGet = Integer.parseInt(comicNumTaker.getText().toString());
         } catch (IllegalArgumentException e) {
@@ -288,13 +336,9 @@ public class MainActivity extends Activity {
         }
 
         NetworkInfo networkInfo = getNetworkInfo();
-
         if (networkInfo != null && networkInfo.isConnected()) {
             if (comicToGet >= 1 && comicToGet <= maximumComicNumber) {
                 counter = comicToGet;
-                if (shouldPlaySound) {
-                    playSound(880, 44100);
-                }
                 URLtoRequestDataFrom = "https://xkcd.com/" + counter + "/info.0.json"; // update the URL
                 getData();
             } else {

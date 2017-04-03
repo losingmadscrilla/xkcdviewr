@@ -8,150 +8,193 @@
     android:paddingTop="8dp"
     android:id="@+id/relativeLayout"
     android:paddingBottom="8dp" tools:context=".MainActivity"
-    android:background="#fff">
+    >
 
-    <ImageView
-        android:src="@drawable/leftarrow"
-        android:layout_width="50dp"
+    <RelativeLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:scaleType="centerInside"
-        android:id="@+id/leftArrow"
-        android:onClick="leftPressed"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true">
 
-    <ImageView
-        android:src="@drawable/rightarrow"
-        android:layout_width="50dp"
+        <ImageView
+            android:id="@+id/audio_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:onClick="audioPressed"
+            android:src="@drawable/audioicon" />
+
+        <ImageView
+            android:id="@+id/audio_image_muted"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:onClick="audioPressed"
+            android:src="@drawable/audioicon_muted"
+            android:visibility="invisible" />
+
+
+        <RelativeLayout
+            android:id="@+id/topCenterLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_alignParentTop="true">
+
+            <Button
+                android:id="@+id/getSpecificComic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:backgroundTint="#0af"
+                android:onClick="getSpecificComic"
+                android:text="get comic #:" />
+
+            <EditText
+                android:id="@+id/comicNumTaker"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:gravity="center_horizontal"
+                android:hint="enter #"
+                android:inputType="number"
+                android:textColor="#000"
+                android:textColorHint="#ddd" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/saveToPhotos"
+            android:src="@drawable/saveicon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:backgroundTint="#0fa"
+            android:onClick="savePressed"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:scaleType="centerInside"
-        android:id="@+id/rightArrow"
-        android:onClick="rightPressed"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true">
 
-    <TextView
-        android:id="@+id/numberTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/leftArrow"
-        android:layout_alignStart="@+id/leftArrow"
-        android:paddingBottom="8dp"
-        android:paddingLeft="4dp"
-        android:text="comic number"
-        android:textColor="#aaa"
-        android:textSize="10sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/doubleLeftArrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/leftArrow"
+            android:onClick="doubleLeftPressed"
+            android:scaleType="centerInside"
+            android:src="@drawable/doubleleftarrow" />
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/rightArrow"
-        android:layout_alignParentEnd="true"
-        android:paddingBottom="8dp"
-        android:paddingRight="4dp"
-        android:text="comic title"
-        android:textColor="#aaa"
-        android:textSize="10sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/leftArrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/randomComicButton"
+            android:onClick="leftPressed"
+            android:scaleType="centerInside"
+            android:src="@drawable/leftarrow" />
 
-    <TextView
-        android:id="@+id/dateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/titleTextView"
-        android:layout_alignParentEnd="true"
-        android:paddingBottom="4dp"
-        android:paddingRight="4dp"
-        android:text="date"
-        android:textColor="#aaa"
-        android:textSize="10sp"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/randomComicButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#0af"
+            android:elevation="10dp"
+            android:onClick="randomComic"
+            android:text="random comic" />
 
-    <Button
-        android:id="@+id/randomComicButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/leftArrow"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="#0af"
-        android:elevation="10dp"
-        android:onClick="randomComic"
-        android:text="random comic" />
+        <ImageView
+            android:id="@+id/rightArrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/randomComicButton"
+            android:onClick="rightPressed"
+            android:scaleType="centerInside"
+            android:src="@drawable/rightarrow" />
+
+        <ImageView
+            android:id="@+id/doubleRightArrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/rightArrow"
+            android:onClick="doubleRightPressed"
+            android:scaleType="centerInside"
+            android:src="@drawable/doublerightarrow" />
+    </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/saveToPhotos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/numberTextView"
-        android:layout_above="@+id/numberTextView"
-        android:backgroundTint="#0af"
-        android:foregroundGravity="center"
-        android:onClick="savePressed"
-        android:paddingBottom="4dp"
-        android:paddingLeft="4dp"
-        android:paddingTop="4dp"
-        android:text="save to photos"
-        android:textColor="#aaa"
-        android:textSize="10sp"
-        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/getSpecificComic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="#0af"
-        android:onClick="getSpecificComic"
-        android:text="get comic #:"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/midLayout"
+        android:layout_below="@+id/topLayout"
+        android:layout_above="@+id/bottomLayout"
+        >
 
-    <EditText
-        android:id="@+id/comicNumTaker"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/getSpecificComic"
-        android:inputType="number"
-        android:textColor="#000"
-        android:hint="enter #"
-        android:textColorHint="#ddd"
-        android:gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/numberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="comic number"
+            android:textColor="#aaa"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/saveToPhotos"
-        android:layout_below="@+id/getSpecificComic"
-        android:paddingBottom="0dp"
-        android:id="@+id/comicImageView"
-        android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/audioicon"
-        android:id="@+id/audio_image"
-        android:onClick="audioPressed"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/comicNumTaker"
-        android:layout_alignEnd="@+id/leftArrow" />
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="date"
+            android:textColor="#aaa"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/audioicon_muted"
-        android:id="@+id/audio_image_muted"
-        android:onClick="audioPressed"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/comicNumTaker"
-        android:layout_alignEnd="@+id/leftArrow"
-        android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_below="@+id/numberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="comic title"
+            android:textColor="#999"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+
+        <ImageView
+            android:id="@+id/comicImageView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/titleTextView"
+            android:layout_centerHorizontal="true" />
+
+
+    </RelativeLayout>
+
 </RelativeLayout>
